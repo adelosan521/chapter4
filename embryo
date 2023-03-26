@@ -13,10 +13,10 @@ cat /project/tunbridgelab/aangeles/atacseq/validation/embryo/2C_macs2/2C_peaks-c
 
 TOBIAS ATACorrect --bam 2C_sorted.bam --peaks merged_peaks.bed --genome GRCh38.primary_assembly.genome.fa --blacklist hg38-blacklist.v2.bed --outdir 2C_macs2_blacklist_merged --cores 8
 
-##Footprints (shown for 2C)
+##Footprints (shown for 2C) - to calculate footprinting scores
 
 TOBIAS FootprintScores --signal /project/tunbridgelab/aangeles/atacseq/validation/embryo/2C_macs2_blacklist/2C_sorted_corrected.bw --regions merged_peaks.bed --output 2C_macs2_blacklist_merged_footprints.bw --cores 8
 
-##BINDetect (shown for 2C)
+##BINDetect (shown for 2C) - to identify bound/unbound status of single TF binding sites
 
 TOBIAS BINDetect --motifs JASPAR2022_CORE_non-redundant_pfms_jaspar.txt --signals 2C_macs2_blacklist_merged_footprints.bw --genome GRCh38.primary_assembly.genome.fa --peaks merged_peaks.bed --outdir 2C_blacklist_macs2_merge_BINDetect --cond_names 2C 
