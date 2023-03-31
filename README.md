@@ -1,4 +1,4 @@
-This Github repository contains the scripts used in Chapter 4 of Alejandro De Los Angeles's DPhil thesis. The main bioinformatics tool that was used was TOBIAS. Additionally a script for basic statistical analysis of BrainSpan Developmental Transcriptome Data is provided.
+This Github repository contains the scripts used in Chapter 4 of Alejandro De Los Angeles's DPhil thesis. The main bioinformatics tool that was used was TOBIAS, which is used for transcription factor footprinting of chromatin accessibility data. Additionally a script for basic statistical analysis of BrainSpan Developmental Transcriptome Data is provided.
 
 The code for pre-processing of ATAC-seq data is contained in the "atac_preprocessing" script. 
 
