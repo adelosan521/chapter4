@@ -1,4 +1,5 @@
 ## TOBIAS comparing naive pluripotency (d0) and formative pluripotency (d1) samples
+## This code uses TOBIAS to compare naive pluripotency (d0) and formative pluripotency (d1) samples. BAM files from STAR are merged and sorted using samtools, and peak files from MACS2 are merged. Then TOBIAS is run to correct for Tn5 bias, generate footprint scores, and identifying bound/unbound sites.
 
 ## BAM files from STAR were merged and sorted using samtools as described in "oct4" script; macs2 was conducted on sorted merged BAM file
 
