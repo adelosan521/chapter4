@@ -1,4 +1,5 @@
 ##TOBIAS 
+## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
 
 ## merge BAM files (from STAR) (example: 0h data from Xiong et al, 2022). Data analyzed in thesis was 0 hour versus 15 hour depletion)
 
