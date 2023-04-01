@@ -17,3 +17,7 @@ TOBIAS FootprintScores --signal /project/tunbridgelab/aangeles/atacseq/hipsci/me
 ##BINDetect - to identify bound / unbound sites of single TF binding sites
 
 TOBIAS BINDetect --motifs JASPAR2022_CORE_non-redundant_pfms_jaspar.txt --signals neuron_merged_footprints.bw --genome GRCh38.primary_assembly.genome.fa --peaks /project/tunbridgelab/aangeles/atacseq/hipsci/merge/neuron_macs2/neuron_peaks-chrM.broadPeak --outdir neuron_BINDetect --cond_names neuron 
+
+## TOBIAS minor modification to identify all bound TFs within a chromatin peak (example shown for chromatin peak #2197)
+
+for filename in `ls /project/tunbridgelab/aangeles/atacseq/hipsci/merge/neuron_BINDetect/*/beds/*_neuron_bound.bed`; do grep -w "neuron_peak_2197" $filename; done > All_TFBS_in_neuron_peak_2197.bed
