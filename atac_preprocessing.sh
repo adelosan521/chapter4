@@ -1,3 +1,5 @@
+##This code is a script template for submitting batch jobs to the Oxford computer cluster. It loads modules (Trim_galore, FASTQC, and STAR), takes in an argument from the command line (raw sequencing data files), trims adapters from raw sequencing data FASTQ files using Trim Galore, generates FastQC reports from trimmed adapter files, and aligns trimmed adapter files to a genome using STAR.
+
 ##for loop to run script across all files
 
 for file in `cat file_list.txt`; do sbatch --job-name $file --mail-user adelosan@gmail.com --mail-type begin,end,fail --wrap="./script.sh $file"; done
