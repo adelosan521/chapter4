@@ -1,5 +1,5 @@
 ##TOBIAS to replicate Bentsen et al, 2020 original TOBIAS paper
-##This code replicates the original TOBIAS paper by Bentsen et al, 2020. It runs MACS2 on merged and sorted BAM files, creates a merged peaks file, runs TOBIAS ATACorrect to correct for Tn5 bias, runs TOBIAS FootprintScores to calculate footprinting scores, and runs TOBIAS BINDetect to identify bound/unbound status of single TF binding sites. 
+##This code replicates the original TOBIAS paper by Bentsen et al, 2020. The code for merging and sorting BAM files is in the "oct4.sh." script. It runs MACS2 on merged and sorted BAM files, creates a merged peaks file, runs TOBIAS ATACorrect to correct for Tn5 bias, runs TOBIAS FootprintScores to calculate footprinting scores, and runs TOBIAS BINDetect to identify bound/unbound status of single TF binding sites. 
 
 ## BAM files for each embryonic development stage were merged and sorted similar to as described in "oct4" script
 
