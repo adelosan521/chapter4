@@ -1,3 +1,5 @@
+## This code reads in TF expression data from Brainspan, finds rows with "frontal cortex" in the brain_region column, calculates the mean and standard error for the rows before row 239 (prenatal data) and after row 239 (postnatal data), and performs a t-test to compare the two.
+
 #read data (example is ASCL1 data from Brainspan)
 data <- read.csv("/home/a/aangeles/Downloads/ASCL1_data.csv")
 head(data)
