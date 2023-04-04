@@ -4,6 +4,8 @@ The code for pre-processing of ATAC-seq data is contained in the "atac_preproces
 
 The code for in-house application of TOBIAS is contained in the "embryo.sh", "oct4.sh", "naive-formative.sh", and "hipsci.sh" scripts. The "embryo.sh" script was used to replicate the figures in the original TOBIAS paper (Bentsen et al, 2022). The "oct4.sh" and "naive-formative.sh" scripts were used to assess the sensitivity and specificity of TOBIAS in published mouse pluripotent stem cell ATAC-seq data (Yang et al, 2019; Xiong et al, 2022). Finally, the "hipsci.sh" script contains the code that waas used to conduct TF footprinting of hiPSC-derived neurons from the HIPSCI (Schwartzentruber et al, 2018).
 
+The code for the chi-square test comparing TF footprint frequency at VGCC loci versus in randomly selected genes is featured in the "chisquare.R" script. The statistical analysis is carried out in R.
+
 The code for statistical analysis of BrainSpan Developmental Transcriptome data is in the "brainspan_stats.R" script. The statistical analysis is carried out in R and involves calculation of mean, standard error, and carrying out a t-test to compare two sets of samples.
 
 References
