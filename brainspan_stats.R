@@ -54,7 +54,7 @@ cat("Significant:", ifelse(mwu$p.value < 0.05, "Yes", "No"), "\n")
 prenatal_mean <- mean(data$RPKM[fc_rows[fc_rows < 239]])
 prenatal_se <- sd(data$RPKM[fc_rows[fc_rows < 239]]) / sqrt(length(fc_rows[fc_rows < 239]))
 
-# calculate median and SE for "frontal cortex" rows after row 239 (i.e. the rows containing the postnatal data)
+# calculate mean and SE for "frontal cortex" rows after row 239 (i.e. the rows containing the postnatal data)
 postnatal_mean <- mean(data$RPKM[fc_rows[fc_rows >= 239]])
 postnatal_se <- sd(data$RPKM[fc_rows[fc_rows >= 239]]) / sqrt(length(fc_rows[fc_rows >= 239]))
 
