@@ -6,7 +6,7 @@ The code for in-house application of TOBIAS is contained in the "embryo.sh", "oc
 
 The code for the chi-square test comparing TF footprint frequency at VGCC loci versus in randomly selected genes is featured in the "chisquare.R" script. The statistical analysis is carried out in R.
 
-The code for statistical analysis of BrainSpan Developmental Transcriptome data is in the "brainspan_stats.R" script. The statistical analysis is carried out in R and involves checking if a dataset follows a normal distribution using the Shapiro-Wilk test. Next, code is provided for calculation of median, interquartile range, and conducting a Mann-Whitney U test to test for differences. Finally, although not used in this thesis, code for calculating is provided for calculating mean, standard error, and carrying out a t-test to compare two sets of samples.
+The code for statistical analysis of BrainSpan Developmental Transcriptome data is in the "brainspan_stats.R" script. The statistical analysis is carried out in R and involves checking if a dataset is normal distributed using the Shapiro-Wilk test. Next, code is provided for calculation of median, interquartile range, and conducting a Mann-Whitney U test to test for differences. Finally, although not used in this thesis, code for calculating is provided for calculating mean, standard error, and carrying out a t-test to compare two sets of samples.
 
 References
 
