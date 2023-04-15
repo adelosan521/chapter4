@@ -56,8 +56,8 @@ while [ ! -e ${base}_1_val_1.fq ]; do sleep 10; done
 fastqc -f fastq ${base}_1_val_1.fq.gz ${base}_2_val_2.fq.gz
 ## Align trimmed adapter files to genome using STAR
 
-##Modified STAR commands
-STAR alignEndsType EndToEnd --outFilterMismatchNoverLmax 0.1 --outFilterScoreMinOverLread 0.66 --outFilterMatchNminOverLread 0.66 --outFilterMatchNmin 20 --alignIntronMax 1 --alignSJDBoverhangMin 999 --alignEndsProtrude 10 ConcordantPair --alignMatesGapMax 2000 --outMultimapperOrder Random --outFilterMultimapNmax 999 --outSAMmultNmax 1 --runThreadN 8 --genomeDir /project/tunbridgelab/aangeles/atacseq/hipsci/ --readFilesIn ${base}_1_val_1.fq.gz ${base}_2_val_2.fq.gz --outFileNamePrefix /project/tunbridgelab/aangeles/atacseq/hipsci/${base}_ --twopassMode Basic --outSAMstrandField intronMotif --readFilesCommand zcat --outSAMtype BAM Unsorted
+##Modified STAR commands (identical to Bentsen et al, 2020)
+STAR alignEndsType EndToEnd --outFilterMismatchNoverLmax 0.1 --outFilterScoreMinOverLread 0.66 --outFilterMatchNminOverLread 0.66 --outFilterMatchNmin 20 --alignIntronMax 1 --alignSJDBoverhangMin 999 --alignEndsProtrude 10 ConcordantPair --alignMatesGapMax 2000 --outMultimapperOrder Random --outFilterMultimapNmax 999 --outSAMmultNmax 1 --runThreadN 8 --genomeDir /project/tunbridgelab/aangeles/atacseq/hipsci/ --readFilesIn ${base}_1_val_1.fq.gz ${base}_2_val_2.fq.gz --outFileNamePrefix /project/tunbridgelab/aangeles/atacseq/hipsci/${base}_ 
 
 ##Generate STAR index
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir /project/tunbridgelab/aangeles/atacseq/hipsci/ --genomeFastaFiles /project/tunbridgelab/aangeles/atacseq/hipsci/GRCh38.primary_assembly.genome.fa --sjdbGTFfile /project/tunbridgelab/aangeles/atacseq/hipsci/new_annotation.gtf --sjdbOverhang 74
