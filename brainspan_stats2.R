@@ -3,9 +3,9 @@
 data <- read.csv("/home/a/aangeles/Downloads/ASCL1_data.csv")
 head(data)
 
-# use grep to find rows with "frontal cortex"
+# use grep to find rows with "frontal" (i.e. grepping frontal cortex samples from BrainSpan dataset)
 fc_rows <- grep("frontal", data$brain_region)
-fc_rows_early_prenatal <- fc_rows[fc_rows <= 76] # early prenatal rows
+fc_rows_early_prenatal <- fc_rows[fc_rows <= 159] # early prenatal rows
 fc_rows_late_prenatal <- fc_rows[fc_rows >= 160 & fc_rows <= 239] # late prenatal rows
 
 # Subset the data for early prenatal and late prenatal samples separately
@@ -37,7 +37,7 @@ early_prenatal_iqr <- IQR(early_prenatal_data)
 late_prenatal_med <- median(late_prenatal_data)
 late_prenatal_iqr <- IQR(late_prenatal_data)
 
-# Print median and IQR for each group
+# Print median, IQR, and number of samples for each group
 cat("Early prenatal group median:", early_prenatal_med, "\n")
 cat("Early prenatal group IQR:", early_prenatal_iqr, "\n")
 cat("Number of samples in early prenatal group:", num_early_prenatal, "\n")
@@ -45,10 +45,10 @@ cat("Late prenatal group median:", late_prenatal_med, "\n")
 cat("Late prenatal group IQR:", late_prenatal_iqr, "\n")
 cat("Number of samples in late prenatal group:", num_late_prenatal, "\n")
 
-# Mann-Whitney U test
+# Comparison using Mann-Whitney U test
 mwu <- wilcox.test(early_prenatal_data, late_prenatal_data)
 
-# Print test results
+# Print Mann-Whitney U test results
 cat("\nMann-Whitney U test:\n")
 cat("U statistic:", mwu$statistic, "\n")
 cat("p-value:", mwu$p.value, "\n")
