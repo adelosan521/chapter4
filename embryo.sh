@@ -1,5 +1,5 @@
 ##TOBIAS to replicate Bentsen et al, 2020 original TOBIAS paper
-##This code replicates the original TOBIAS paper by Bentsen et al, 2020. The code for merging and sorting BAM files is in the "oct4.sh." script. It runs MACS2 on merged and sorted BAM files, creates a merged peaks file, runs TOBIAS ATACorrect to correct for Tn5 bias, runs TOBIAS FootprintScores to calculate footprinting scores, and runs TOBIAS BINDetect to identify bound/unbound status of single TF binding sites. The minor modification made to TOBIAS to identify all bound TFs within a chromatin peak is provided in the "hipsci.sh" script.
+##This code replicates the original TOBIAS paper by Bentsen et al, 2020. The code for merging and sorting BAM files is in the "oct4.sh." script. It runs MACS2 on merged and sorted BAM files, creates a merged peaks file, runs TOBIAS ATACorrect to correct for Tn5 bias, runs TOBIAS FootprintScores to calculate footprinting scores, and runs TOBIAS BINDetect to identify bound/unbound status of single TF binding sites. The minor modification made to TOBIAS to identify all bound TFs within a chromatin peak is provided in line 25-27 (example shown for chromatin peak #X) and also in the "hipsci.sh" script.
 
 ## BAM files for each embryonic development stage were merged and sorted similar to as described in "oct4" script
 
@@ -21,3 +21,7 @@ TOBIAS FootprintScores --signal /project/tunbridgelab/aangeles/atacseq/validatio
 ##BINDetect (shown for 2C) - to identify bound/unbound status of single TF binding sites
 
 TOBIAS BINDetect --motifs JASPAR2022_CORE_non-redundant_pfms_jaspar.txt --signals 2C_macs2_blacklist_merged_footprints.bw --genome GRCh38.primary_assembly.genome.fa --peaks merged_peaks.bed --outdir 2C_blacklist_macs2_merge_BINDetect --cond_names 2C 
+
+## TOBIAS minor modification to identify all bound TFs within a chromatin peak (example shown for chromatin peak #X)
+
+for filename in `ls /project/tunbridgelab/aangeles/atacseq/hipsci/merge/naive_BINDetect/*/beds/*_naive_bound.bed`; do grep -w "naive_peak_x" $filename; done > All_TFBS_in_naive_peak_x.bed
