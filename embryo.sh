@@ -24,4 +24,4 @@ TOBIAS BINDetect --motifs JASPAR2022_CORE_non-redundant_pfms_jaspar.txt --signal
 
 ## TOBIAS minor modification to identify all bound TFs within a chromatin peak (example shown for chromatin peak #X)
 
-for filename in `ls /project/tunbridgelab/aangeles/atacseq/hipsci/merge/naive_BINDetect/*/beds/*_naive_bound.bed`; do grep -w "naive_peak_x" $filename; done > All_TFBS_in_naive_peak_x.bed
+for filename in `ls /project/tunbridgelab/aangeles/atacseq/embryo/merge/naive_BINDetect/*/beds/*_naive_bound.bed`; do grep -w "naive_peak_x" $filename; done > All_TFBS_in_naive_peak_x.bed
