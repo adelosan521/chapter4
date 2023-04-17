@@ -1,5 +1,5 @@
 ##TOBIAS 
-## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
+## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, removes PCR duplicates, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
 
 ## merge BAM files (from STAR) (example: 0h data from Xiong et al, 2022). Data analyzed in thesis was 0 hour versus 15 hour depletion)
 
@@ -9,6 +9,10 @@ samtools merge ATAC-seq_0h_merge_unsorted.bam ATAC-seq_0h_Recovery_rep1_Aligned.
 ## sort merged BAM files (example: 0h data)
 
 samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h__merge_sorted.bam
+
+## remove PCR duplicates
+
+java -jar picard.jar MarkDuplicates I=input.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
 
 ## MACS2 on merged BAM files (example: 0h data)
 
