@@ -1,5 +1,5 @@
 ##TOBIAS 
-## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, removes PCR duplicates, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
+## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, removes PCR duplicates, removes mitochondrial reads, removes blacklisted regions, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
 
 ## merge BAM files (from STAR) (example: 0h data from Xiong et al, 2022). Data analyzed in thesis was 0 hour versus 15 hour depletion)
 
@@ -14,7 +14,15 @@ samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h__merge_sorted.bam
 
 java -jar picard.jar MarkDuplicates I=input.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
 
-## MACS2 on merged BAM files (example: 0h data)
+## remove mitochondrial reads (note "input.bam" is "output.bam" from the picard command).
+
+samtools view -h -F 4 -b input.bam | grep -v 'chrM\|MT' | samtools view -b -o filtered.bam
+
+## remove blacklisted regions (uses bedtools -- note "filtered.bam" is the filtered.bam from removing mitochondrial reads; blacklist.bed is mm-10-blacklist.v2.bed for mouse)
+
+bedtools intersect -v -a filtered.bam -b blacklist.bed -wa -sorted -g genome.file > clean.bam
+
+## MACS2 on merged, PCR duplicate-depleted and filtered BAM files (example: 0h data)
 
 macs2 callpeak -t ATAC-seq_0h_merge_sorted.bam -f BAM -n 0h --outdir 0h --nomodel --shift -100 --extsize 200 --broad
 
