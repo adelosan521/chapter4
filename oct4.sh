@@ -26,6 +26,9 @@ bedtools intersect -v -a ATAC-seq_0h_merge_sorted_filtered.bam -b blacklist.bed 
 
 ## MACS2 on merged, PCR duplicate-depleted and filtered BAM files (example: 0h data)
 
+module load python-base/3.8.3
+module load python-cbrg
+which macs2
 macs2 callpeak -t ATAC-seq_0h_merge_sorted_filtered.bam -f BAM -n 0h --outdir 0h --nomodel --shift -100 --extsize 200 --broad
 
 ##create merged peaks file (for 0h and 15h timepoints)
