@@ -4,6 +4,9 @@
 ## BAM files for each hiPSC-derived neuron dataset were merged and sorted similar to as described in "oct4" script
 
 ## MACS2 on merged BAM files
+module load python-base/3.8.3
+module load python-cbrg
+which macs2
 macs2 callpeak -t super_merge_sorted.bam -f BAM -n neuron --outdir neuron_macs2 --nomodel --shift -100 --extsize 200 --broad
 
 ##TOBIAS ATACorrect (correction of Tn5 bias). 
