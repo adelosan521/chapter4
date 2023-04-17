@@ -1,5 +1,5 @@
 ##TOBIAS on hiPSC-derived neuron dataset from HIPSCI
-##This code uses TOBIAS to analyze a hiPSC-derived neuron dataset from HIPSCI. The code for merging and sorting BAM files is in the "oct4.sh." script. It runs MACS2 on merged and sorted BAM files to call peaks, corrects for Tn5 bias, calculates footprinting scores, and identifies bound/unbound sites of single TF binding sites.
+##This code uses TOBIAS to analyze a hiPSC-derived neuron dataset from HIPSCI. The code for merging, sorting, removing PCR duplicates, removing mitochondrial reads, removing blacklisted regions, producing  BAM files is in the "oct4.sh." script. It runs MACS2 on merged and sorted BAM files to call peaks, corrects for Tn5 bias, calculates footprinting scores, and identifies bound/unbound sites of single TF binding sites.
 
 ## BAM files for each hiPSC-derived neuron dataset were merged and sorted similar to as described in "oct4" script
 
