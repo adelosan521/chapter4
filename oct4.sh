@@ -8,25 +8,25 @@ samtools merge ATAC-seq_0h_merge_unsorted.bam ATAC-seq_0h_Recovery_rep1_Aligned.
 
 ## sort merged BAM files (example: 0h data)
 
-samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h__merge_sorted.bam
+samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h_merge_sorted.bam
 
 ## remove PCR duplicates
 
 module load picard-tools
-java -jar picard.jar MarkDuplicates I=input.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
+java -jar picard.jar MarkDuplicates I=ATAC-seq_0h_merge_sorted.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
 
-## remove mitochondrial reads (note "input.bam" is "output.bam" from the picard command).
+## remove mitochondrial reads (note "output.bam" from the picard command).
 
-samtools view -h -F 4 -b input.bam | grep -v 'chrM\|MT' | samtools view -b -o filtered.bam
+samtools view -h -F 4 -b output.bam | grep -v 'chrM\|MT' | samtools view -b -o ATAC-seq_0h_merge_sorted_filtered.bam
 
 ## remove blacklisted regions (uses bedtools -- note "filtered.bam" is the filtered.bam from removing mitochondrial reads; blacklist.bed is mm-10-blacklist.v2.bed for mouse)
 
 module load bedtools
-bedtools intersect -v -a filtered.bam -b blacklist.bed -wa -sorted -g genome.file > clean.bam
+bedtools intersect -v -a ATAC-seq_0h_merge_sorted_filtered.bam -b blacklist.bed -wa -sorted -g genome.file > clean.bam
 
 ## MACS2 on merged, PCR duplicate-depleted and filtered BAM files (example: 0h data)
 
-macs2 callpeak -t ATAC-seq_0h_merge_sorted.bam -f BAM -n 0h --outdir 0h --nomodel --shift -100 --extsize 200 --broad
+macs2 callpeak -t ATAC-seq_0h_merge_sorted_filtered.bam -f BAM -n 0h --outdir 0h --nomodel --shift -100 --extsize 200 --broad
 
 ##create merged peaks file (for 0h and 15h timepoints)
 
@@ -34,9 +34,9 @@ cat /project/tunbridgelab/aangeles/atacseq/validation/oct4/0h_rep1/0h_peaks.broa
 
 ##TOBIAS ATACorrect (correction of Tn5 bias - example shown is 0h treatment and 15h depletion). Data analyzed in thesis was 0 hour versus 15 hour depletion
 
-TOBIAS ATACorrect --bam ATAC-seq_0h_merge_sorted.bam --peaks merged_peaks_super.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir 0hvs15h --cores 8
+TOBIAS ATACorrect --bam ATAC-seq_0h_merge_sorted_filtered.bam --peaks merged_peaks_super.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir 0hvs15h --cores 8
 
-TOBIAS ATACorrect --bam ATAC-seq_15h_merge_sorted.bam --peaks merged_peaks_super.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir 0hvs15h --cores 8
+TOBIAS ATACorrect --bam ATAC-seq_15h_merge_sorted_filtered.bam --peaks merged_peaks_super.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir 0hvs15h --cores 8
 
 ##Footprints (to calculate footprinting scores)
 
