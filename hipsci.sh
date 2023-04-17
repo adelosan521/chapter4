@@ -9,6 +9,11 @@ module load python-cbrg
 which macs2
 macs2 callpeak -t super_merge_sorted.bam -f BAM -n neuron --outdir neuron_macs2 --nomodel --shift -100 --extsize 200 --broad
 
+## Load TOBIAS
+module purge
+module load python-cbrg
+TOBIAS --version
+
 ##TOBIAS ATACorrect (correction of Tn5 bias). 
 
 TOBIAS ATACorrect --bam super_merge_sorted.bam --peaks /project/tunbridgelab/aangeles/atacseq/hipsci/merge/neuron_macs2/neuron_peaks.broadPeak --genome GRCh38.primary_assembly.genome.fa --blacklist hg38-blacklist.v2.bed --outdir neuron_macs2_blacklist --cores 8
