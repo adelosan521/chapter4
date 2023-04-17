@@ -35,6 +35,11 @@ macs2 callpeak -t ATAC-seq_0h_merge_sorted_filtered.bam -f BAM -n 0h --outdir 0h
 
 cat /project/tunbridgelab/aangeles/atacseq/validation/oct4/0h_rep1/0h_peaks.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/oct4/0h_rep2/0h_peaks.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/oct4/15h_rep1/15h_peaks.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/oct4/15h_rep2/15h_peaks.broadPeak| bedtools sort | bedtools merge > merged_peaks_0_15h.bed
 
+## Load TOBIAS
+module purge
+module load python-cbrg
+TOBIAS --version
+
 ##TOBIAS ATACorrect (correction of Tn5 bias - example shown is 0h treatment and 15h depletion). Data analyzed in thesis was 0 hour versus 15 hour depletion
 
 TOBIAS ATACorrect --bam ATAC-seq_0h_merge_sorted_filtered.bam --peaks merged_peaks_super.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir 0hvs15h --cores 8
