@@ -4,6 +4,9 @@
 ## BAM files for each embryonic development stage were merged and sorted similar to as described in "oct4" script
 
 ## MACS2 on merged BAM files (example: 2C data, but repeated for 4C, 8C, ICM, ESC)
+module load python-base/3.8.3
+module load python-cbrg
+which macs2
 macs2 callpeak -t 2C_sorted.bam -f BAM -n 2C --outdir 2C_mac2 --nomodel --shift -100 --extsize 200 --broad
 
 ##create merged peaks file (for 2C, 4C, 8C, ICM, and ESC)
