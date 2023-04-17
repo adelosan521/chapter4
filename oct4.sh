@@ -12,6 +12,7 @@ samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h__merge_sorted.bam
 
 ## remove PCR duplicates
 
+module load picard-tools
 java -jar picard.jar MarkDuplicates I=input.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
 
 ## remove mitochondrial reads (note "input.bam" is "output.bam" from the picard command).
@@ -20,6 +21,7 @@ samtools view -h -F 4 -b input.bam | grep -v 'chrM\|MT' | samtools view -b -o fi
 
 ## remove blacklisted regions (uses bedtools -- note "filtered.bam" is the filtered.bam from removing mitochondrial reads; blacklist.bed is mm-10-blacklist.v2.bed for mouse)
 
+module load bedtools
 bedtools intersect -v -a filtered.bam -b blacklist.bed -wa -sorted -g genome.file > clean.bam
 
 ## MACS2 on merged, PCR duplicate-depleted and filtered BAM files (example: 0h data)
