@@ -13,8 +13,12 @@ macs2 callpeak -t 2C_sorted.bam -f BAM -n 2C --outdir 2C_mac2 --nomodel --shift 
 
 cat /project/tunbridgelab/aangeles/atacseq/validation/embryo/2C_macs2/2C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/4C_macs2/4C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/8C_macs2/8C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/ICM_macs2/ICM_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/ESC_macs2/ESC_peaks-chrM.broadPeak | bedtools sort | bedtools merge > merged_peaks.bed
 
-##TOBIAS ATACorrect (correction of Tn5 bias) - shown for 2C data, but repeated for 4C, 8C, ICM, ESC
+## Load TOBIAS
+module purge
+module load python-cbrg
+TOBIAS --version
 
+##TOBIAS ATACorrect (correction of Tn5 bias) - shown for 2C data, but repeated for 4C, 8C, ICM, ESC
 TOBIAS ATACorrect --bam 2C_sorted.bam --peaks merged_peaks.bed --genome GRCh38.primary_assembly.genome.fa --blacklist hg38-blacklist.v2.bed --outdir 2C_macs2_blacklist_merged --cores 8
 
 ##Footprints (shown for 2C) - to calculate footprinting scores
