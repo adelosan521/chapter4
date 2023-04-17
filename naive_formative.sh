@@ -7,6 +7,11 @@
 
 cat /project/tunbridgelab/aangeles/atacseq/validation/naive-formative/d0/d0_peaks.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/naive-formative/d1/d1_peaks.broadPeak | bedtools sort | bedtools merge > merged_peaks_d0vsd1.bed
 
+## Load TOBIAS
+module purge
+module load python-cbrg
+TOBIAS --version
+
 ##ATACorrect (correction of Tn5 bias) of d0 and d1 samples
 
 TOBIAS ATACorrect --bam d0_sorted.bam --peaks merged_peaks_d0vsd1.bed --genome GRCm39.primary_assembly.genome.fa --blacklist mm10-blacklist.v2.bed --outdir d0_ATACorrect --cores 8
