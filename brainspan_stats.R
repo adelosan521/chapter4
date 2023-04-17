@@ -1,4 +1,4 @@
-## This code reads in TF expression data from Brainspan, finds rows with "frontal cortex" in the brain_region column, and checks normality using Shapiro-Wilk Test. It then calculates the median and interquartile range for the rows before row 239 (prenatal data) and after row 239 (postnatal data), and performs a Mann-Whitney U test for comparison. Although not used in the thesis, code for calculating mean and standard error, as well as conducting a t-test is also provided. 
+## This code reads in TF expression data from Brainspan, finds rows with "frontal" in the brain_region column, and checks normality using Shapiro-Wilk Test. It then calculates the median and interquartile range for the rows before row 239 (prenatal data) and after row 239 (postnatal data), and performs a Mann-Whitney U test for comparison. Although not used in the thesis, code for calculating mean and standard error, as well as conducting a t-test is also provided. 
 
 #read data (example is ASCL1 data from Brainspan)
 data <- read.csv("/home/a/aangeles/Downloads/ASCL1_data.csv")
