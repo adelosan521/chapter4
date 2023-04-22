@@ -1,4 +1,4 @@
-## Chi-square test for comparing TF footprint frequency at VGCC loci versus random genes
+## Chi-square test for comparing TF footprint frequency at VGCC loci versus random genes. It was run individually for each TF.
 # Define the observed counts
 observed_counts <- matrix(c(5, 7, 27, 21), nrow = 2)
 
