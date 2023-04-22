@@ -8,6 +8,8 @@ The code for the chi-square test comparing TF footprint frequency at VGCC loci v
 
 Additionally code for basic statistical analysis of BrainSpan Developmental Transcriptome Data is provided in the "brainspan_stats.R" and "brainspan_stats2.R" scripts. The scripts involve checking if a dataset is normally distributed using the Shapiro-Wilk test. They calculate median, interquartile range, and provides code for conducting a Mann-Whitney U test to test for differences. "brainspan_stats.R" script contains code for comparing fetal versus postnatal stamples whereas "brainspan_stats2.R" script contains code for comparing early versus late fetal stage samples.
 
+The code for determining whether there is a correlation between TF footprint frequency at VGCC loci and at randomly selected genes is featured in the "scatterplot.R" script. It chooses between calculating a Pearson correlation coefficient or Spearman correlation coefficient based on the normality of the data. The normality of the data is determined using the Shapiro-Wilk test. If the data is normal, the Pearson correlation coefficient is calculated; if the data is not normal, the Spearman correlation coefficient is calculated. It prints the values and generates a scatterplot that can be saved as a PNG.
+
 References
 
 Bentsen M, et al. ATAC-seq footprinting unravels kinetics of transcription factor binding during zygotic genome activation. Nature Communications 11: 4267 (2020).
