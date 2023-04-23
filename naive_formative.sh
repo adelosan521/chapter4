@@ -4,7 +4,6 @@
 ## BAM files from STAR were merged and sorted using samtools as described in "oct4" script; macs2 was conducted on sorted merged BAM file
 
 ##merge peak files (from MACS2) of d0 and d1 samples (naive-formative)
-
 cat /project/tunbridgelab/aangeles/atacseq/validation/naive-formative/d0/d0_peaks.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/naive-formative/d1/d1_peaks.broadPeak | bedtools sort | bedtools merge > merged_peaks_d0vsd1.bed
 
 ## Load TOBIAS
