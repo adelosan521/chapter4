@@ -10,7 +10,6 @@ which macs2
 macs2 callpeak -t 2C_sorted.bam -f BAM -n 2C --outdir 2C_mac2 --nomodel --shift -100 --extsize 200 --broad
 
 ##create merged peaks file (for 2C, 4C, 8C, ICM, and ESC)
-
 cat /project/tunbridgelab/aangeles/atacseq/validation/embryo/2C_macs2/2C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/4C_macs2/4C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/8C_macs2/8C_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/ICM_macs2/ICM_peaks-chrM.broadPeak /project/tunbridgelab/aangeles/atacseq/validation/embryo/ESC_macs2/ESC_peaks-chrM.broadPeak | bedtools sort | bedtools merge > merged_peaks.bed
 
 ## Load TOBIAS
@@ -22,13 +21,10 @@ TOBIAS --version
 TOBIAS ATACorrect --bam 2C_sorted.bam --peaks merged_peaks.bed --genome GRCh38.primary_assembly.genome.fa --blacklist hg38-blacklist.v2.bed --outdir 2C_macs2_blacklist_merged --cores 8
 
 ##Footprints (shown for 2C) - to calculate footprinting scores
-
 TOBIAS FootprintScores --signal /project/tunbridgelab/aangeles/atacseq/validation/embryo/2C_macs2_blacklist/2C_sorted_corrected.bw --regions merged_peaks.bed --output 2C_macs2_blacklist_merged_footprints.bw --cores 8
 
 ##BINDetect (shown for 2C) - to identify bound/unbound status of single TF binding sites
-
 TOBIAS BINDetect --motifs JASPAR2022_CORE_non-redundant_pfms_jaspar.txt --signals 2C_macs2_blacklist_merged_footprints.bw --genome GRCh38.primary_assembly.genome.fa --peaks merged_peaks.bed --outdir 2C_blacklist_macs2_merge_BINDetect --cond_names 2C 
 
 ## TOBIAS minor modification to identify all bound TFs within a chromatin peak (example shown for chromatin peak #X)
-
 for filename in `ls /project/tunbridgelab/aangeles/atacseq/embryo/merge/naive_BINDetect/*/beds/*_naive_bound.bed`; do grep -w "naive_peak_x" $filename; done > All_TFBS_in_naive_peak_x.bed
