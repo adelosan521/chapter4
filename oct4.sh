@@ -1,16 +1,16 @@
 ##TOBIAS 
 ## This code uses the TOBIAS suite of tools to analyze ATAC-seq data from Xiong et al, 2022. It merges and sorts BAM files from STAR, removes PCR duplicates, removes mitochondrial reads, removes blacklisted regions, runs MACS2 to call peaks, creates a merged peaks file, and uses TOBIAS to correct for Tn5 bias, calculate footprint scores, and identify bound/unbound sites.
 
+## remove PCR duplicates
+module load picard-tools
+java -jar picard.jar MarkDuplicates I=Input.bam O=ATAC-seq_0h_merge_unsorted.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
+
 ## merge BAM files (from STAR) (example: 0h data from Xiong et al, 2022). Data analyzed in thesis was 0 hour versus 15 hour depletion)
 module load samtools
 samtools merge ATAC-seq_0h_merge_unsorted.bam ATAC-seq_0h_Recovery_rep1_Aligned.out.bam ATAC-seq_0h_Recovery_rep2_Aligned.out.bam
 
 ## sort merged BAM files (example: 0h data)
 samtools sort ATAC-seq_0h_merge_unsorted.bam -o ATAC-seq_0h_merge_sorted.bam
-
-## remove PCR duplicates
-module load picard-tools
-java -jar picard.jar MarkDuplicates I=ATAC-seq_0h_merge_sorted.bam O=output.bam M=metrics.txt REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT
 
 ## remove mitochondrial reads (note "output.bam" from the picard command).
 samtools view -h -F 4 -b output.bam | grep -v 'chrM\|MT' | samtools view -b -o ATAC-seq_0h_merge_sorted_filtered.bam
